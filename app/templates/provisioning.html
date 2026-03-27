@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provisionando — Enterprise Orchestrator</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!--
+        AUTO-REFRESH: A cada 5 segundos, a página recarrega automaticamente.
+        Isso permite que o cliente veja o status mudar de "Deploying" para "Subscribed"
+        sem precisar apertar F5.
+
+        Em produção, usaríamos WebSocket ou Server-Sent Events (SSE) para updates
+        em tempo real sem reload. Aqui usamos meta refresh por simplicidade.
+    -->
+    <meta http-equiv="refresh" content="5">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">⚡ Enterprise Orchestrator</div>
+            <div class="header-right">
+                {% if user_name %}<span class="user-name">{{ user_name }}</span>{% endif %}
+                <span class="badge badge-deploying">Provisionando</span>
+                <a href="/auth/logout" class="logout-link">Sair</a>
+            </div>
+        </div>
+
+        <!-- Status Principal -->
+        <h1>Estamos preparando seu ambiente</h1>
+        <p class="subtitle">
+            Seu plano <strong>{{ plan_id }}</strong> está sendo configurado.
+            Isso pode levar alguns minutos.
+        </p>
+
+        <!-- Info da Subscription -->
+        <div class="info-card">
+            <div class="info-row">
+                <span class="info-label">Subscription ID</span>
+                <span class="info-value">{{ subscription_id }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Oferta</span>
+                <span class="info-value">{{ offer_id }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Plano</span>
+                <span class="info-value">{{ plan_id }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Comprador</span>
+                <span class="info-value">{{ purchaser_email }}</span>
+            </div>
+        </div>
+
+        <!-- Barra de Progresso Animada -->
+        <div class="progress-section">
+            <h2>Progresso do Provisionamento</h2>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Steps Simulados -->
+        <div class="steps">
+            <div class="step completed">
+                <span class="step-icon">✅</span>
+                <div class="step-content">
+                    <span class="step-label">Compra confirmada no Marketplace</span>
+                    <span class="step-detail">Token resolvido e subscription ativada</span>
+                </div>
+            </div>
+            <div class="step completed">
+                <span class="step-icon">✅</span>
+                <div class="step-content">
+                    <span class="step-label">Pipeline de deploy iniciado</span>
+                    <span class="step-detail">Infraestrutura sendo provisionada via CI/CD</span>
+                </div>
+            </div>
+            <div class="step in-progress">
+                <span class="step-icon">⏳</span>
+                <div class="step-content">
+                    <span class="step-label">Configurando ambiente isolado</span>
+                    <span class="step-detail">Criando recursos de nuvem para sua organização</span>
+                </div>
+            </div>
+            <div class="step pending">
+                <span class="step-icon">⬜</span>
+                <div class="step-content">
+                    <span class="step-label">Gerando URL de acesso</span>
+                    <span class="step-detail">Aguardando conclusão do provisionamento</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensagem de espera -->
+        <div class="wait-message">
+            <div class="spinner"></div>
+            <p>Esta página atualiza automaticamente a cada 5 segundos.</p>
+            <p class="hint">
+                Você pode fechar esta aba — quando o ambiente estiver pronto,
+                você receberá um e-mail e poderá acessar pelo botão
+                <strong>"Acessar Aplicativo"</strong> no Azure Portal.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

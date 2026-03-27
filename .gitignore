@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Azure Function local
+function/.python_packages/
+function/local.settings.json
+
+# Docker
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db

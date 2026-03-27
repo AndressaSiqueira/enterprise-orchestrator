@@ -1,0 +1,204 @@
+# ===================================================================================
+# PIPELINE DE PROVISIONAMENTO DO CLIENTE
+# ===================================================================================
+#
+# Este pipeline é DISPARADO quando um novo cliente compra no Marketplace.
+# Ele cria o Resource Group + VM do cliente e avisa a Landing Page via webhook.
+#
+# COMO DISPARAR:
+# Este pipeline seria trigado por uma queue message ou webhook da Landing Page.
+# Para demo, pode ser disparado manualmente passando os parâmetros.
+#
+# PARÂMETROS:
+# - subscriptionId: ID da subscription SaaS (ex: sub-contoso-001)
+# - customerName: Nome do cliente (ex: contoso) — usado no nome dos recursos
+# - location: Região Azure (ex: eastus2)
+#
+# FLUXO:
+# 1. Cria Resource Group: rg-<customerName>-<subscriptionId>
+# 2. Cria VM: vm-<customerName>
+# 3. Pega o IP público da VM
+# 4. Chama o webhook da Function para entregar a URL
+# 5. Landing Page redireciona o cliente para o IP da VM
+#
+# ===================================================================================
+
+trigger: none  # Apenas manual ou via API
+
+parameters:
+  - name: subscriptionId
+    displayName: 'Subscription ID (do Marketplace)'
+    type: string
+    default: 'sub-contoso-001'
+
+  - name: customerName
+    displayName: 'Nome do cliente'
+    type: string
+    default: 'contoso'
+
+  - name: location
+    displayName: 'Região Azure'
+    type: string
+    default: 'eastus2'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: marketplace-vars
+  - name: rgName
+    value: 'rg-${{ parameters.customerName }}-${{ parameters.subscriptionId }}'
+  - name: vmName
+    value: 'vm-${{ parameters.customerName }}'
+
+stages:
+
+# ==========================================================================
+# STAGE 1: Criar Resource Group
+# ==========================================================================
+- stage: CreateResourceGroup
+  displayName: '📁 Criar Resource Group'
+  jobs:
+  - job: CreateRG
+    steps:
+    - task: AzureCLI@2
+      displayName: 'az group create'
+      inputs:
+        azureSubscription: 'azure-marketplace'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          echo "Criando RG: $(rgName) em ${{ parameters.location }}"
+          az group create \
+            --name $(rgName) \
+            --location ${{ parameters.location }} \
+            --tags \
+              "subscriptionId=${{ parameters.subscriptionId }}" \
+              "customer=${{ parameters.customerName }}" \
+              "managedBy=marketplace-pipeline"
+
+# ==========================================================================
+# STAGE 2: Criar VM
+# ==========================================================================
+- stage: CreateVM
+  displayName: '🖥️ Criar VM'
+  dependsOn: CreateResourceGroup
+  jobs:
+  - job: DeployVM
+    steps:
+    - task: AzureCLI@2
+      name: createVm
+      displayName: 'az vm create'
+      inputs:
+        azureSubscription: 'azure-marketplace'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          echo "Criando VM: $(vmName) no RG: $(rgName)"
+
+          VM_RESULT=$(az vm create \
+            --resource-group $(rgName) \
+            --name $(vmName) \
+            --image Ubuntu2204 \
+            --size Standard_B1ms \
+            --admin-username azureuser \
+            --generate-ssh-keys \
+            --public-ip-sku Standard \
+            --output json)
+
+          VM_IP=$(echo $VM_RESULT | jq -r '.publicIpAddress')
+          echo "VM criada com IP: $VM_IP"
+          echo "##vso[task.setvariable variable=VM_IP;isOutput=true]$VM_IP"
+
+# ==========================================================================
+# STAGE 3: Configurar VM (instalar app do cliente)
+# ==========================================================================
+- stage: ConfigureVM
+  displayName: '⚙️ Configurar VM'
+  dependsOn: CreateVM
+  variables:
+    VM_IP: $[ stageDependencies.CreateVM.DeployVM.outputs['createVm.VM_IP'] ]
+  jobs:
+  - job: Configure
+    steps:
+    - task: AzureCLI@2
+      displayName: 'Instalar aplicação na VM'
+      inputs:
+        azureSubscription: 'azure-marketplace'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          echo "Configurando VM $(vmName)..."
+
+          # Exemplo: instalar nginx + app na VM
+          az vm run-command invoke \
+            --resource-group $(rgName) \
+            --name $(vmName) \
+            --command-id RunShellScript \
+            --scripts "
+              sudo apt-get update -y
+              sudo apt-get install -y nginx
+              echo '<h1>Bem-vindo ao Enterprise Orchestrator</h1><p>Cliente: ${{ parameters.customerName }}</p>' | sudo tee /var/www/html/index.html
+              sudo systemctl restart nginx
+            "
+
+          echo "VM configurada! Acessível em: http://$(VM_IP)"
+
+# ==========================================================================
+# STAGE 4: Notificar Landing Page via Webhook
+# ==========================================================================
+- stage: NotifyLandingPage
+  displayName: '📡 Notificar Landing Page'
+  dependsOn:
+    - CreateVM
+    - ConfigureVM
+  variables:
+    VM_IP: $[ stageDependencies.CreateVM.DeployVM.outputs['createVm.VM_IP'] ]
+  jobs:
+  - job: CallWebhook
+    displayName: 'Chamar webhook deploy-finished'
+    steps:
+    - task: AzureCLI@2
+      displayName: 'POST /api/deploy-finished'
+      inputs:
+        azureSubscription: 'azure-marketplace'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          # Pegar a Function Key para autenticação
+          FUNC_NAME=$(az functionapp list \
+            --resource-group $(RESOURCE_GROUP_NAME) \
+            --query "[?contains(name, 'func-')].name" -o tsv)
+
+          FUNC_KEY=$(az functionapp keys list \
+            --resource-group $(RESOURCE_GROUP_NAME) \
+            --name $FUNC_NAME \
+            --query "functionKeys.default" -o tsv)
+
+          FUNC_URL="https://${FUNC_NAME}.azurewebsites.net/api/deploy-finished?code=${FUNC_KEY}"
+
+          # Chamar o webhook com a URL da VM
+          echo "Notificando Landing Page..."
+          echo "Subscription: ${{ parameters.subscriptionId }}"
+          echo "URL: http://$(VM_IP)"
+
+          curl -X POST "$FUNC_URL" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "subscription_id": "${{ parameters.subscriptionId }}",
+              "permanent_url": "http://$(VM_IP)"
+            }'
+
+          echo ""
+          echo "==================================="
+          echo "✅ Provisionamento completo!"
+          echo "Cliente: ${{ parameters.customerName }}"
+          echo "RG: $(rgName)"
+          echo "VM: $(vmName)"
+          echo "IP: $(VM_IP)"
+          echo "URL: http://$(VM_IP)"
+          echo "==================================="
+          echo ""
+          echo "O cliente agora pode acessar pelo botão"
+          echo "'Acessar Aplicativo' no Azure Portal."
+          echo "==================================="

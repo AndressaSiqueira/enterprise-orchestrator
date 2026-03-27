@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronto! — Enterprise Orchestrator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">⚡ Enterprise Orchestrator</div>
+            <div class="header-right">
+                {% if user_name %}<span class="user-name">{{ user_name }}</span>{% endif %}
+                <span class="badge badge-ready">Pronto</span>
+                <a href="/auth/logout" class="logout-link">Sair</a>
+            </div>
+        </div>
+
+        <!-- Status Principal -->
+        <h1>✅ Tudo pronto!</h1>
+        <p class="subtitle">
+            Seu ambiente foi provisionado com sucesso para o plano <strong>{{ plan_id }}</strong>.
+        </p>
+
+        <!-- Info da Subscription -->
+        <div class="info-card">
+            <div class="info-row">
+                <span class="info-label">Subscription ID</span>
+                <span class="info-value">{{ subscription_id }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Plano</span>
+                <span class="info-value">{{ plan_id }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">URL de Acesso</span>
+                <span class="info-value">
+                    <a href="{{ permanent_url }}">{{ permanent_url }}</a>
+                </span>
+            </div>
+        </div>
+
+        <!-- Próximos Passos -->
+        <div class="next-steps">
+            <h2>Próximos Passos</h2>
+            <ol>
+                <li>
+                    <strong>Acesse a plataforma</strong> clicando no botão abaixo
+                </li>
+                <li>
+                    <strong>Faça login</strong> com a mesma conta Microsoft usada na compra
+                    (<strong>{{ purchaser_email }}</strong>)
+                </li>
+                <li>
+                    <strong>Complete o onboarding</strong> no painel de administração
+                </li>
+                <li>
+                    <strong>Convide membros</strong> do seu time na seção de Configurações
+                </li>
+            </ol>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="{{ permanent_url }}" class="cta-button">
+            Acessar a Plataforma →
+        </a>
+
+        <!-- Nota sobre acesso futuro -->
+        <div class="note">
+            <p>
+                <strong>💡 Acesso futuro:</strong> Você sempre pode acessar sua plataforma
+                pelo botão <strong>"Acessar Aplicativo"</strong> dentro do
+                <a href="https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.SaaS%2Fresources">Azure Portal → SaaS Resources</a>.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

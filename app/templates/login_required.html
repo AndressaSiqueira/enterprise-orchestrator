@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Necessário — Enterprise Orchestrator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">⚡ Enterprise Orchestrator</div>
+        </div>
+
+        <h1>🔐 Autenticação Necessária</h1>
+        <p class="subtitle">
+            Para acessar sua plataforma, precisamos identificar sua conta.
+        </p>
+
+        <!--
+            EM PRODUÇÃO:
+            Este passo não existiria como página separada. O usuário seria
+            automaticamente redirecionado para o fluxo de login do Azure AD (MSAL):
+
+            https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
+              client_id=SEU_APP_CLIENT_ID
+              &response_type=code
+              &redirect_uri=https://sua-landing-page.com/auth/callback
+              &scope=openid profile email
+
+            Após o login, o callback receberia o token JWT com tenantId e objectId,
+            que usaríamos para buscar a subscription no banco de dados.
+
+            NESTE MOCK:
+            Simulamos a autenticação adicionando ?user=email na URL.
+        -->
+
+        <div class="info-card">
+            <h2>🧪 Modo Demonstração</h2>
+            <p>
+                Em produção, você faria login com sua conta Microsoft (Azure AD SSO).
+                Neste simulador, use os links abaixo para testar:
+            </p>
+
+            <div class="demo-links">
+                <h3>Cenário 1 — Primeira compra (Configure your account):</h3>
+                <ul>
+                    <li>
+                        <a href="/?token=mock-token-contoso">
+                            /?token=mock-token-contoso
+                        </a>
+                        <br><small>Simula: João da Contoso acabou de comprar (Plano Professional)</small>
+                    </li>
+                    <li>
+                        <a href="/?token=mock-token-fabrikam">
+                            /?token=mock-token-fabrikam
+                        </a>
+                        <br><small>Simula: Maria da Fabrikam acabou de comprar (Plano Enterprise)</small>
+                    </li>
+                </ul>
+
+                <h3>Cenário 2 — Acesso posterior (Open SaaS Account):</h3>
+                <ul>
+                    <li>
+                        <a href="/?user=joao@contoso.com">
+                            /?user=joao@contoso.com
+                        </a>
+                        <br><small>Simula: João quer acessar a plataforma (após provisionamento)</small>
+                    </li>
+                    <li>
+                        <a href="/?user=maria@fabrikam.com">
+                            /?user=maria@fabrikam.com
+                        </a>
+                        <br><small>Simula: Maria quer acessar a plataforma (após provisionamento)</small>
+                    </li>
+                </ul>
+
+                <h3>Webhook do Pipeline (simular deploy finalizado):</h3>
+                <div class="code-block">
+                    <code>
+curl -X POST http://localhost:8000/webhook/deploy-finished \
+  -H "Content-Type: application/json" \
+  -d '{"subscription_id":"sub-contoso-001","permanent_url":"https://www.google.com/search?q=cliente1.saas.com"}'
+                    </code>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

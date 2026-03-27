@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro — Enterprise Orchestrator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">⚡ Enterprise Orchestrator</div>
+            <span class="badge badge-error">Erro</span>
+        </div>
+
+        <!-- Mensagem de Erro -->
+        <h1>⚠️ {{ title }}</h1>
+        <p class="subtitle">{{ message }}</p>
+
+        {% if suggestion %}
+        <div class="info-card">
+            <p><strong>O que fazer:</strong> {{ suggestion }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Links de ajuda -->
+        <div class="next-steps">
+            <h2>Precisa de Ajuda?</h2>
+            <ul>
+                <li>
+                    Volte ao <a href="https://portal.azure.com">Azure Portal</a> e
+                    tente novamente pelo botão "Configurar Conta"
+                </li>
+                <li>
+                    Entre em contato com o suporte:
+                    <a href="mailto:support@enterprise-orchestrator.com">support@enterprise-orchestrator.com</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
