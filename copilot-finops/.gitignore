@@ -1,0 +1,14 @@
+.venv/
+.vscode/
+__pycache__/
+*.py[cod]
+
+.env
+.env.*
+!.env.example
+
+data/
+staging/
+*.csv
+capture_*.txt
+*.log

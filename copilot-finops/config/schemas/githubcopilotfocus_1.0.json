@@ -1,0 +1,1556 @@
+{
+  "additionalColumns": [],
+  "translator": {
+    "type": "TabularTranslator",
+    "mappings": [
+      {
+        "source": {
+          "name": "AvailabilityZone",
+          "type": "String"
+        },
+        "sink": {
+          "name": "AvailabilityZone"
+        }
+      },
+      {
+        "source": {
+          "name": "BilledCost",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "BilledCost"
+        }
+      },
+      {
+        "source": {
+          "name": "BillingAccountId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "BillingAccountId"
+        }
+      },
+      {
+        "source": {
+          "name": "BillingAccountName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "BillingAccountName"
+        }
+      },
+      {
+        "source": {
+          "name": "BillingAccountType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "BillingAccountType"
+        }
+      },
+      {
+        "source": {
+          "name": "BillingCurrency",
+          "type": "String"
+        },
+        "sink": {
+          "name": "BillingCurrency"
+        }
+      },
+      {
+        "source": {
+          "name": "BillingPeriodEnd",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "BillingPeriodEnd"
+        }
+      },
+      {
+        "source": {
+          "name": "BillingPeriodStart",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "BillingPeriodStart"
+        }
+      },
+      {
+        "source": {
+          "name": "CapacityReservationId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "CapacityReservationId"
+        }
+      },
+      {
+        "source": {
+          "name": "CapacityReservationStatus",
+          "type": "String"
+        },
+        "sink": {
+          "name": "CapacityReservationStatus"
+        }
+      },
+      {
+        "source": {
+          "name": "ChargeCategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ChargeCategory"
+        }
+      },
+      {
+        "source": {
+          "name": "ChargeClass",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ChargeClass"
+        }
+      },
+      {
+        "source": {
+          "name": "ChargeDescription",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ChargeDescription"
+        }
+      },
+      {
+        "source": {
+          "name": "ChargeFrequency",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ChargeFrequency"
+        }
+      },
+      {
+        "source": {
+          "name": "ChargePeriodEnd",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "ChargePeriodEnd"
+        }
+      },
+      {
+        "source": {
+          "name": "ChargePeriodStart",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "ChargePeriodStart"
+        }
+      },
+      {
+        "source": {
+          "name": "CommitmentDiscountCategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "CommitmentDiscountCategory"
+        }
+      },
+      {
+        "source": {
+          "name": "CommitmentDiscountId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "CommitmentDiscountId"
+        }
+      },
+      {
+        "source": {
+          "name": "CommitmentDiscountName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "CommitmentDiscountName"
+        }
+      },
+      {
+        "source": {
+          "name": "CommitmentDiscountQuantity",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "CommitmentDiscountQuantity"
+        }
+      },
+      {
+        "source": {
+          "name": "CommitmentDiscountStatus",
+          "type": "String"
+        },
+        "sink": {
+          "name": "CommitmentDiscountStatus"
+        }
+      },
+      {
+        "source": {
+          "name": "CommitmentDiscountType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "CommitmentDiscountType"
+        }
+      },
+      {
+        "source": {
+          "name": "CommitmentDiscountUnit",
+          "type": "String"
+        },
+        "sink": {
+          "name": "CommitmentDiscountUnit"
+        }
+      },
+      {
+        "source": {
+          "name": "ConsumedQuantity",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "ConsumedQuantity"
+        }
+      },
+      {
+        "source": {
+          "name": "ConsumedUnit",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ConsumedUnit"
+        }
+      },
+      {
+        "source": {
+          "name": "ContractedCost",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "ContractedCost"
+        }
+      },
+      {
+        "source": {
+          "name": "ContractedUnitPrice",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "ContractedUnitPrice"
+        }
+      },
+      {
+        "source": {
+          "name": "EffectiveCost",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "EffectiveCost"
+        }
+      },
+      {
+        "source": {
+          "name": "InvoiceId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "InvoiceId"
+        }
+      },
+      {
+        "source": {
+          "name": "InvoiceIssuerName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "InvoiceIssuerName"
+        }
+      },
+      {
+        "source": {
+          "name": "ListCost",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "ListCost"
+        }
+      },
+      {
+        "source": {
+          "name": "ListUnitPrice",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "ListUnitPrice"
+        }
+      },
+      {
+        "source": {
+          "name": "PricingCategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "PricingCategory"
+        }
+      },
+      {
+        "source": {
+          "name": "PricingCurrency",
+          "type": "String"
+        },
+        "sink": {
+          "name": "PricingCurrency"
+        }
+      },
+      {
+        "source": {
+          "name": "PricingQuantity",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "PricingQuantity"
+        }
+      },
+      {
+        "source": {
+          "name": "PricingUnit",
+          "type": "String"
+        },
+        "sink": {
+          "name": "PricingUnit"
+        }
+      },
+      {
+        "source": {
+          "name": "ProviderName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ProviderName"
+        }
+      },
+      {
+        "source": {
+          "name": "PublisherName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "PublisherName"
+        }
+      },
+      {
+        "source": {
+          "name": "RegionId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "RegionId"
+        }
+      },
+      {
+        "source": {
+          "name": "RegionName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "RegionName"
+        }
+      },
+      {
+        "source": {
+          "name": "ResourceId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ResourceId"
+        }
+      },
+      {
+        "source": {
+          "name": "ResourceName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ResourceName"
+        }
+      },
+      {
+        "source": {
+          "name": "ResourceType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ResourceType"
+        }
+      },
+      {
+        "source": {
+          "name": "ServiceCategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ServiceCategory"
+        }
+      },
+      {
+        "source": {
+          "name": "ServiceName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ServiceName"
+        }
+      },
+      {
+        "source": {
+          "name": "ServiceSubcategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "ServiceSubcategory"
+        }
+      },
+      {
+        "source": {
+          "name": "SkuId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "SkuId"
+        }
+      },
+      {
+        "source": {
+          "name": "SkuMeter",
+          "type": "String"
+        },
+        "sink": {
+          "name": "SkuMeter"
+        }
+      },
+      {
+        "source": {
+          "name": "SkuPriceDetails",
+          "type": "String"
+        },
+        "sink": {
+          "name": "SkuPriceDetails"
+        }
+      },
+      {
+        "source": {
+          "name": "SkuPriceId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "SkuPriceId"
+        }
+      },
+      {
+        "source": {
+          "name": "SubAccountId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "SubAccountId"
+        }
+      },
+      {
+        "source": {
+          "name": "SubAccountName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "SubAccountName"
+        }
+      },
+      {
+        "source": {
+          "name": "SubAccountType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "SubAccountType"
+        }
+      },
+      {
+        "source": {
+          "name": "Tags",
+          "type": "String"
+        },
+        "sink": {
+          "name": "Tags"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AccountId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AccountId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AccountName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AccountName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AccountOwnerId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AccountOwnerId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AmortizationClass",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AmortizationClass"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BilledCostInUsd",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_BilledCostInUsd"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BilledUnitPrice",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_BilledUnitPrice"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingAccountAgreement",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_BillingAccountAgreement"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingAccountId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_BillingAccountId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingAccountName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_BillingAccountName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingExchangeRate",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_BillingExchangeRate"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingExchangeRateDate",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "x_BillingExchangeRateDate"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingItemCode",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_BillingItemCode"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingItemName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_BillingItemName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingProfileId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_BillingProfileId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_BillingProfileName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_BillingProfileName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ChargeId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ChargeId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommitmentDiscountNormalizedRatio",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_CommitmentDiscountNormalizedRatio"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommitmentDiscountPercent",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_CommitmentDiscountPercent"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommitmentDiscountSavings",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_CommitmentDiscountSavings"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommitmentDiscountSpendEligibility",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CommitmentDiscountSpendEligibility"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommitmentDiscountUsageEligibility",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CommitmentDiscountUsageEligibility"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommitmentDiscountUtilizationAmount",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_CommitmentDiscountUtilizationAmount"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommitmentDiscountUtilizationPotential",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_CommitmentDiscountUtilizationPotential"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommodityCode",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CommodityCode"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CommodityName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CommodityName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ComponentName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ComponentName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ComponentType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ComponentType"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ConsumedCoreHours",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_ConsumedCoreHours"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ContractedCostInUsd",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_ContractedCostInUsd"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CostAllocationRuleName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CostAllocationRuleName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CostCategories",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CostCategories"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CostCenter",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CostCenter"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CostType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CostType"
+        }
+      },
+      {
+        "source": {
+          "name": "x_Credits",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_Credits"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CurrencyConversionRate",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_CurrencyConversionRate"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CustomerId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CustomerId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_CustomerName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_CustomerName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_Discount",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_Discount"
+        }
+      },
+      {
+        "source": {
+          "name": "x_EffectiveCostInUsd",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_EffectiveCostInUsd"
+        }
+      },
+      {
+        "source": {
+          "name": "x_EffectiveUnitPrice",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_EffectiveUnitPrice"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ExportTime",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "x_ExportTime"
+        }
+      },
+      {
+        "source": {
+          "name": "x_IngestionTime",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "x_IngestionTime"
+        }
+      },
+      {
+        "source": {
+          "name": "x_InstanceID",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_InstanceID"
+        }
+      },
+      {
+        "source": {
+          "name": "x_InvoiceIssuerId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_InvoiceIssuerId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_InvoiceSectionId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_InvoiceSectionId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_InvoiceSectionName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_InvoiceSectionName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ListCostInUsd",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_ListCostInUsd"
+        }
+      },
+      {
+        "source": {
+          "name": "x_Location",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_Location"
+        }
+      },
+      {
+        "source": {
+          "name": "x_NegotiatedDiscountPercent",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_NegotiatedDiscountPercent"
+        }
+      },
+      {
+        "source": {
+          "name": "x_NegotiatedDiscountSavings",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_NegotiatedDiscountSavings"
+        }
+      },
+      {
+        "source": {
+          "name": "x_Operation",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_Operation"
+        }
+      },
+      {
+        "source": {
+          "name": "x_OwnerAccountID",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_OwnerAccountID"
+        }
+      },
+      {
+        "source": {
+          "name": "x_PartnerCreditApplied",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_PartnerCreditApplied"
+        }
+      },
+      {
+        "source": {
+          "name": "x_PartnerCreditRate",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_PartnerCreditRate"
+        }
+      },
+      {
+        "source": {
+          "name": "x_PricingBlockSize",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_PricingBlockSize"
+        }
+      },
+      {
+        "source": {
+          "name": "x_PricingSubcategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_PricingSubcategory"
+        }
+      },
+      {
+        "source": {
+          "name": "x_PricingUnitDescription",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_PricingUnitDescription"
+        }
+      },
+      {
+        "source": {
+          "name": "x_Project",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_Project"
+        }
+      },
+      {
+        "source": {
+          "name": "x_PublisherCategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_PublisherCategory"
+        }
+      },
+      {
+        "source": {
+          "name": "x_PublisherId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_PublisherId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ResellerId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ResellerId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ResellerName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ResellerName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ResourceGroupName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ResourceGroupName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ResourceType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ResourceType"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ServiceCode",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ServiceCode"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ServiceId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ServiceId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ServiceModel",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_ServiceModel"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ServicePeriodEnd",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "x_ServicePeriodEnd"
+        }
+      },
+      {
+        "source": {
+          "name": "x_ServicePeriodStart",
+          "type": "DateTimeOffset"
+        },
+        "sink": {
+          "name": "x_ServicePeriodStart"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuCoreCount",
+          "type": "Int64"
+        },
+        "sink": {
+          "name": "x_SkuCoreCount"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuDescription",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuDescription"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuDetails",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuDetails"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuInstanceType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuInstanceType"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuIsCreditEligible",
+          "type": "Boolean"
+        },
+        "sink": {
+          "name": "x_SkuIsCreditEligible"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuLicenseQuantity",
+          "type": "Int64"
+        },
+        "sink": {
+          "name": "x_SkuLicenseQuantity"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuLicenseStatus",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuLicenseStatus"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuLicenseType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuLicenseType"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuLicenseUnit",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuLicenseUnit"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuMeterCategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuMeterCategory"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuMeterId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuMeterId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuMeterSubcategory",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuMeterSubcategory"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuOfferId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuOfferId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuOperatingSystem",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuOperatingSystem"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuOrderId",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuOrderId"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuOrderName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuOrderName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuPartNumber",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuPartNumber"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuPlanName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuPlanName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuRegion",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuRegion"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuServiceFamily",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuServiceFamily"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuTerm",
+          "type": "Int64"
+        },
+        "sink": {
+          "name": "x_SkuTerm"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SkuTier",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SkuTier"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SourceChanges",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SourceChanges"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SourceName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SourceName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SourceProvider",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SourceProvider"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SourceType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SourceType"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SourceValues",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SourceValues"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SourceVersion",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SourceVersion"
+        }
+      },
+      {
+        "source": {
+          "name": "x_SubproductName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_SubproductName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_TotalDiscountPercent",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_TotalDiscountPercent"
+        }
+      },
+      {
+        "source": {
+          "name": "x_TotalSavings",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_TotalSavings"
+        }
+      },
+      {
+        "source": {
+          "name": "x_UsageType",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_UsageType"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIModelName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AIModelName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIModelProvider",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AIModelProvider"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIAgentSurface",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AIAgentSurface"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AITokensInput",
+          "type": "Int64"
+        },
+        "sink": {
+          "name": "x_AITokensInput"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AITokensOutput",
+          "type": "Int64"
+        },
+        "sink": {
+          "name": "x_AITokensOutput"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AITokensCacheRead",
+          "type": "Int64"
+        },
+        "sink": {
+          "name": "x_AITokensCacheRead"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AITokensCacheWrite",
+          "type": "Int64"
+        },
+        "sink": {
+          "name": "x_AITokensCacheWrite"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AITokensTotal",
+          "type": "Int64"
+        },
+        "sink": {
+          "name": "x_AITokensTotal"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AICreditQuantity",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_AICreditQuantity"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AICreditGrossAmount",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_AICreditGrossAmount"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIDiscountAmount",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_AIDiscountAmount"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIDiscountQuantity",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_AIDiscountQuantity"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIMonthlyQuota",
+          "type": "Double"
+        },
+        "sink": {
+          "name": "x_AIMonthlyQuota"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIPrincipalRef",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AIPrincipalRef"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIAttributionGrain",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AIAttributionGrain"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AITeamName",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AITeamName"
+        }
+      },
+      {
+        "source": {
+          "name": "x_AIEngagement",
+          "type": "String"
+        },
+        "sink": {
+          "name": "x_AIEngagement"
+        }
+      }
+    ]
+  }
+}

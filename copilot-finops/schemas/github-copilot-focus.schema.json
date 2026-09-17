@@ -1,0 +1,872 @@
+{
+  "dataset": "GitHubCopilotFocus",
+  "version": "1.0",
+  "loadMode": "replace",
+  "kusto": {
+    "database": "Ingestion",
+    "rawTable": "GitHubCopilotFocus_raw",
+    "parquetMapping": "GitHubCopilotFocus_raw_mapping"
+  },
+  "columns": [
+    {
+      "name": "AvailabilityZone",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "BilledCost",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "BillingAccountId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "BillingAccountName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "BillingAccountType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "BillingCurrency",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "BillingPeriodEnd",
+      "type": "datetime",
+      "nullable": true
+    },
+    {
+      "name": "BillingPeriodStart",
+      "type": "datetime",
+      "nullable": true
+    },
+    {
+      "name": "CapacityReservationId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CapacityReservationStatus",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ChargeCategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ChargeClass",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ChargeDescription",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ChargeFrequency",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ChargePeriodEnd",
+      "type": "datetime",
+      "nullable": false
+    },
+    {
+      "name": "ChargePeriodStart",
+      "type": "datetime",
+      "nullable": false
+    },
+    {
+      "name": "CommitmentDiscountCategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CommitmentDiscountId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CommitmentDiscountName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CommitmentDiscountQuantity",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "CommitmentDiscountStatus",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CommitmentDiscountType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "CommitmentDiscountUnit",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ConsumedQuantity",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "ConsumedUnit",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ContractedCost",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "ContractedUnitPrice",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "EffectiveCost",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "InvoiceId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "InvoiceIssuerName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ListCost",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "ListUnitPrice",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "PricingCategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PricingCurrency",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "PricingQuantity",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "PricingUnit",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ProviderName",
+      "type": "string",
+      "nullable": false
+    },
+    {
+      "name": "PublisherName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RegionId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "RegionName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ResourceId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ResourceName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ResourceType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ServiceCategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "ServiceName",
+      "type": "string",
+      "nullable": false
+    },
+    {
+      "name": "ServiceSubcategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SkuId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SkuMeter",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SkuPriceDetails",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SkuPriceId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SubAccountId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SubAccountName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "SubAccountType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "Tags",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AccountId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AccountName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AccountOwnerId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AmortizationClass",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_BilledCostInUsd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_BilledUnitPrice",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingAccountAgreement",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingAccountId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingAccountName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingExchangeRate",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingExchangeRateDate",
+      "type": "datetime",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingItemCode",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingItemName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingProfileId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_BillingProfileName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ChargeId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CommitmentDiscountNormalizedRatio",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_CommitmentDiscountPercent",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_CommitmentDiscountSavings",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_CommitmentDiscountSpendEligibility",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CommitmentDiscountUsageEligibility",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CommitmentDiscountUtilizationAmount",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_CommitmentDiscountUtilizationPotential",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_CommodityCode",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CommodityName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ComponentName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ComponentType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ConsumedCoreHours",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_ContractedCostInUsd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_CostAllocationRuleName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CostCategories",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CostCenter",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CostType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_Credits",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CurrencyConversionRate",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_CustomerId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_CustomerName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_Discount",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_EffectiveCostInUsd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_EffectiveUnitPrice",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_ExportTime",
+      "type": "datetime",
+      "nullable": true
+    },
+    {
+      "name": "x_IngestionTime",
+      "type": "datetime",
+      "nullable": true
+    },
+    {
+      "name": "x_InstanceID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_InvoiceIssuerId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_InvoiceSectionId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_InvoiceSectionName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ListCostInUsd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_Location",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_NegotiatedDiscountPercent",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_NegotiatedDiscountSavings",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_Operation",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_OwnerAccountID",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_PartnerCreditApplied",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_PartnerCreditRate",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_PricingBlockSize",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_PricingSubcategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_PricingUnitDescription",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_Project",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_PublisherCategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_PublisherId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ResellerId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ResellerName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ResourceGroupName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ResourceType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ServiceCode",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ServiceId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ServiceModel",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_ServicePeriodEnd",
+      "type": "datetime",
+      "nullable": true
+    },
+    {
+      "name": "x_ServicePeriodStart",
+      "type": "datetime",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuCoreCount",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuDescription",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuDetails",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuInstanceType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuIsCreditEligible",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuLicenseQuantity",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuLicenseStatus",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuLicenseType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuLicenseUnit",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuMeterCategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuMeterId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuMeterSubcategory",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuOfferId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuOperatingSystem",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuOrderId",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuOrderName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuPartNumber",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuPlanName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuRegion",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuServiceFamily",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuTerm",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "x_SkuTier",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SourceChanges",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SourceName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SourceProvider",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SourceType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SourceValues",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SourceVersion",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_SubproductName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_TotalDiscountPercent",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_TotalSavings",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_UsageType",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AIModelName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AIModelProvider",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AIAgentSurface",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AITokensInput",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "x_AITokensOutput",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "x_AITokensCacheRead",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "x_AITokensCacheWrite",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "x_AITokensTotal",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "x_AICreditQuantity",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_AICreditGrossAmount",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_AIDiscountAmount",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_AIDiscountQuantity",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_AIMonthlyQuota",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "x_AIPrincipalRef",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AIAttributionGrain",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AITeamName",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "x_AIEngagement",
+      "type": "string",
+      "nullable": true
+    }
+  ]
+}

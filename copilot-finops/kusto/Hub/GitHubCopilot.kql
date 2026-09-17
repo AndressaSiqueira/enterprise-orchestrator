@@ -1,0 +1,173 @@
+// Run this file in the Hub database after the Ingestion script succeeds.
+// Preserves the public function names/signatures from the previous 3-table implementation.
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets the full history of all GitHub Copilot records (budgets, seats, usage)."
+) GitHubCopilotHistory_v1_0() {
+    database("Ingestion").GitHubCopilot_final_v1_0
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets the full history of GitHub Copilot budget snapshots aligned to schema version 1.0."
+) GitHubCopilotBudgetsHistory_v1_0() {
+    GitHubCopilotHistory_v1_0()
+    | where x_RecordType == "Budget"
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets the latest GitHub Copilot budget snapshot per organization aligned to schema version 1.0."
+) GitHubCopilotBudgets_v1_0() {
+    let history = GitHubCopilotBudgetsHistory_v1_0();
+    let latestCollections = history
+        | summarize LatestCollection = max(CollectedAtUtc) by Organization;
+    history
+    | lookup kind = inner latestCollections on Organization
+    | where CollectedAtUtc == LatestCollection
+    | project-away LatestCollection
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets the latest GitHub Copilot budget snapshot with the latest supported schema."
+) GitHubCopilotBudgets() {
+    GitHubCopilotBudgets_v1_0()
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets the full history of GitHub Copilot seat snapshots."
+) GitHubCopilotSeatsHistory_v1_0() {
+    GitHubCopilotHistory_v1_0()
+    | where x_RecordType == "Seat"
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets the full history of GitHub Copilot user usage snapshots."
+) GitHubCopilotUserUsageHistory_v1_0() {
+    GitHubCopilotHistory_v1_0()
+    | where x_RecordType == "UsageDaily"
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets the latest GitHub Copilot assigned seats."
+) GitHubCopilotSeats_v1_0() {
+    let history = GitHubCopilotSeatsHistory_v1_0();
+    let latestCollections = history
+        | summarize LatestCollection = max(CollectedAtUtc) by Organization;
+    history
+    | lookup kind = inner latestCollections on Organization
+    | where CollectedAtUtc == LatestCollection and x_RowKind == "Seat"
+    | project-away LatestCollection
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets the latest GitHub Copilot user usage snapshot."
+) GitHubCopilotUserUsage_v1_0() {
+    let history = GitHubCopilotUserUsageHistory_v1_0();
+    let latestCollections = history
+        | summarize LatestCollection = max(CollectedAtUtc) by Organization;
+    history
+    | lookup kind = inner latestCollections on Organization
+    | where CollectedAtUtc == LatestCollection and x_RowKind == "Usage"
+    | project-away LatestCollection
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets GitHub Copilot activity and assigned-seat status by person."
+) GitHubCopilotLicenseUtilization() {
+    let usage = GitHubCopilotUserUsage_v1_0()
+        | summarize
+            ReportStartDay = min(ReportStartDay),
+            ReportEndDay = max(ReportEndDay),
+            ActiveDays = dcountif(Day, Interactions > 0 or CodeGenerations > 0 or CodeAcceptances > 0),
+            Interactions = sum(Interactions),
+            CodeGenerations = sum(CodeGenerations),
+            CodeAcceptances = sum(CodeAcceptances),
+            LocSuggestedToAdd = sum(LocSuggestedToAdd),
+            LocSuggestedToDelete = sum(LocSuggestedToDelete),
+            LocAdded = sum(LocAdded),
+            LocDeleted = sum(LocDeleted),
+            UsedAgent = max(UsedAgent),
+            UsedChat = max(UsedChat),
+            UsedCli = max(UsedCli),
+            UsageCollectedAtUtc = max(CollectedAtUtc)
+            by Organization, UserLogin;
+    let seats = GitHubCopilotSeats_v1_0()
+        | project Organization, UserLogin, HasAssignedSeat = true,
+            AssigningTeam, PendingCancellationDate, LastActivityAt,
+            LastActivityEditor, LastAuthenticatedAt, SeatCreatedAt = CreatedAt,
+            PlanType, SeatCollectedAtUtc = CollectedAtUtc;
+    usage
+    | join kind = fullouter seats on Organization, UserLogin
+    | extend
+        Organization = coalesce(Organization, Organization1),
+        UserLogin = coalesce(UserLogin, UserLogin1),
+        HasAssignedSeat = coalesce(HasAssignedSeat, false),
+        ActiveDays = coalesce(ActiveDays, 0),
+        Interactions = coalesce(Interactions, 0),
+        CodeGenerations = coalesce(CodeGenerations, 0),
+        CodeAcceptances = coalesce(CodeAcceptances, 0),
+        LocSuggestedToAdd = coalesce(LocSuggestedToAdd, 0),
+        LocSuggestedToDelete = coalesce(LocSuggestedToDelete, 0),
+        LocAdded = coalesce(LocAdded, 0),
+        LocDeleted = coalesce(LocDeleted, 0),
+        UsedAgent = coalesce(UsedAgent, false),
+        UsedChat = coalesce(UsedChat, false),
+        UsedCli = coalesce(UsedCli, false)
+    | extend
+        HasUsage = Interactions > 0 or CodeGenerations > 0 or CodeAcceptances > 0
+    | extend
+        UtilizationStatus = case(
+            HasAssignedSeat and HasUsage, "Active",
+            HasAssignedSeat, "Inactive",
+            "Unassigned activity"),
+        AcceptanceRate = iff(coalesce(CodeGenerations, 0) == 0, real(null), todouble(CodeAcceptances) / todouble(CodeGenerations))
+    | project Organization, UserLogin, HasAssignedSeat, HasUsage,
+        UtilizationStatus, ReportStartDay, ReportEndDay, ActiveDays,
+        Interactions, CodeGenerations, CodeAcceptances, AcceptanceRate,
+        LocSuggestedToAdd, LocSuggestedToDelete, LocAdded, LocDeleted,
+        UsedAgent, UsedChat, UsedCli, AssigningTeam,
+        PendingCancellationDate, LastActivityAt, LastActivityEditor,
+        LastAuthenticatedAt, SeatCreatedAt, PlanType,
+        UsageCollectedAtUtc, SeatCollectedAtUtc
+}
+
+.create-or-alter function with (
+    folder = "GitHubCopilot",
+    docstring = "Gets organization-level GitHub Copilot license utilization, including zero-seat snapshots."
+) GitHubCopilotLicenseSummary() {
+    let seatHistory = GitHubCopilotSeatsHistory_v1_0();
+    let latestCollections = seatHistory
+        | summarize LatestCollection = max(CollectedAtUtc) by Organization;
+    let snapshots = seatHistory
+        | lookup kind = inner latestCollections on Organization
+        | where CollectedAtUtc == LatestCollection and x_RowKind == "Snapshot"
+        | project Organization, TotalSeats, CollectedAtUtc;
+    let people = GitHubCopilotLicenseUtilization()
+        | summarize
+            AssignedSeats = countif(HasAssignedSeat),
+            ActiveUsers = countif(HasUsage),
+            UtilizedSeats = countif(HasAssignedSeat and HasUsage),
+            UnassignedActiveUsers = countif(not(HasAssignedSeat) and HasUsage)
+            by Organization;
+    snapshots
+    | join kind = leftouter people on Organization
+    | extend
+        AssignedSeats = coalesce(AssignedSeats, 0),
+        ActiveUsers = coalesce(ActiveUsers, 0),
+        UtilizedSeats = coalesce(UtilizedSeats, 0),
+        UnassignedActiveUsers = coalesce(UnassignedActiveUsers, 0)
+    | extend
+        UnusedSeats = max_of(TotalSeats - UtilizedSeats, 0),
+        UtilizationRate = iff(TotalSeats == 0, real(null), todouble(UtilizedSeats) / todouble(TotalSeats))
+    | project Organization, TotalSeats, AssignedSeats, ActiveUsers,
+        UtilizedSeats, UnusedSeats, UnassignedActiveUsers, UtilizationRate,
+        CollectedAtUtc
+}

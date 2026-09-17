@@ -1,0 +1,33 @@
+// Database: Hub
+
+// Tile: Budget risk summary (multi stat)
+GitHubCopilotBudgets()
+| extend PercentConsumed = iff(BudgetAmount == 0, real(null), todouble(coalesce(ConsumedAmount, decimal(0))) / todouble(BudgetAmount) * 100)
+| summarize
+    Budgets = count(),
+    OverBudget = countif(PercentConsumed >= 100),
+    AtRisk = countif(PercentConsumed >= 80 and PercentConsumed < 100),
+    TotalBudgetAmount = sum(BudgetAmount),
+    TotalConsumedAmount = sum(coalesce(ConsumedAmount, decimal(0)))
+
+// Tile: Budget vs. consumption by product/SKU (bar chart)
+GitHubCopilotBudgets()
+| project BudgetProductSku, BudgetEntityName, BudgetAmount, ConsumedAmount = coalesce(ConsumedAmount, decimal(0))
+| order by BudgetAmount desc
+
+// Tile: Budget risk detail (table; sort by highest consumption risk first)
+GitHubCopilotBudgets()
+| extend PercentConsumed = iff(BudgetAmount == 0, real(null), todouble(coalesce(ConsumedAmount, decimal(0))) / todouble(BudgetAmount) * 100)
+| extend RiskLevel = case(
+    PercentConsumed >= 100, "Over budget",
+    PercentConsumed >= 80, "At risk",
+    PercentConsumed >= 50, "Watch",
+    "Healthy")
+| project BudgetEntityName, BudgetScope, BudgetProductSku, BudgetAmount, ConsumedAmount,
+    PercentConsumed, RiskLevel, PreventFurtherUsage, WillAlert, UserLogin
+| order by PercentConsumed desc
+
+// Tile: Budgets by scope (pie chart; where spend controls are applied - org, user, repo, etc.)
+GitHubCopilotBudgets()
+| summarize Budgets = count(), TotalBudgetAmount = sum(BudgetAmount) by BudgetScope
+| order by TotalBudgetAmount desc

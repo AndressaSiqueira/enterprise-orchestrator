@@ -1,0 +1,51 @@
+// Database: Hub
+
+// Tile: License summary (multi stat)
+GitHubCopilotLicenseSummary()
+| project TotalSeats, ActiveUsers, UtilizedSeats, UnusedSeats,
+    UnassignedActiveUsers, UtilizationRate
+
+// Tile: People by utilization status (column or pie chart)
+GitHubCopilotLicenseUtilization()
+| summarize People = count() by UtilizationStatus
+| order by People desc
+
+// Tile: Activity by person (table)
+GitHubCopilotLicenseUtilization()
+| project UserLogin, HasAssignedSeat, UtilizationStatus, ActiveDays,
+    Interactions, CodeGenerations, CodeAcceptances, AcceptanceRate,
+    LocSuggestedToAdd, LocAdded, LocDeleted, LastActivityAt,
+    LastActivityEditor
+| order by Interactions desc
+
+// Tile: Daily activity (time chart)
+GitHubCopilotUserUsage_v1_0()
+| summarize Interactions = sum(Interactions),
+    CodeGenerations = sum(CodeGenerations),
+    CodeAcceptances = sum(CodeAcceptances),
+    ActiveUsers = dcountif(UserLogin, Interactions > 0 or CodeGenerations > 0 or CodeAcceptances > 0)
+    by Day
+| order by Day asc
+
+// Tile: Reclaim candidates - assigned seat, zero usage (table; sort by LastActivityAt to prioritize dormant seats)
+GitHubCopilotLicenseUtilization()
+| where HasAssignedSeat and not(HasUsage)
+| project UserLogin, AssigningTeam, PlanType, LastActivityAt, LastActivityEditor,
+    PendingCancellationDate, UsageCollectedAtUtc
+| order by LastActivityAt asc
+
+// Tile: Feature adoption by surface (column chart; users per Copilot surface, out of ActiveUsers)
+GitHubCopilotUserUsage_v1_0()
+| summarize
+    ActiveUsers = dcountif(UserLogin, Interactions > 0 or CodeGenerations > 0 or CodeAcceptances > 0),
+    Agent = dcountif(UserLogin, UsedAgent),
+    Chat = dcountif(UserLogin, UsedChat),
+    Cli = dcountif(UserLogin, UsedCli),
+    CloudAgent = dcountif(UserLogin, UsedCopilotCloudAgent),
+    CodingAgent = dcountif(UserLogin, UsedCopilotCodingAgent)
+| project
+    Surface = dynamic(["Agent", "Chat", "CLI", "Cloud Agent", "Coding Agent"]),
+    Users = pack_array(Agent, Chat, Cli, CloudAgent, CodingAgent),
+    ActiveUsers
+| mv-expand Surface, Users
+| extend Surface = tostring(Surface), Users = toint(Users)
